@@ -9,12 +9,12 @@ def main():
     config = Config()
     config.nepochs          = 200
     config.dropout          = 0.5
-    config.batch_size       = 19
+    config.batch_size       = 60
     config.lr_method        = "adam"
-    config.lr               = 0.0001
+    config.lr               = 0.0003
     config.lr_decay         = 1.0
     config.clip             = -2.0 # if negative, no clipping
-    config.nepoch_no_imprv  = 5
+    config.nepoch_no_imprv  = 8
 
     config.dir_model = config.dir_output + "model.finetuning.weights/"
     
@@ -27,10 +27,10 @@ def main():
     # model.reinitialize_weights("proj")
 
     # create datasets [(char_ids), word_id]
-    processing_word = get_processing_word(lowercase=True)
-    dev = CoNLLDataset(config.filename_dev, processing_word)
-    train = CoNLLDataset(config.filename_train, processing_word)
-    test = CoNLLDataset(config.filename_test, processing_word)
+    # processing_word = get_processing_word(lowercase=True)
+    dev = CoNLLDataset(config.filename_dev)
+    train = CoNLLDataset(config.filename_train)
+    test = CoNLLDataset(config.filename_test)
 
     # train model
 
