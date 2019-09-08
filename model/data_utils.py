@@ -300,12 +300,10 @@ def get_processing_word(vocab_words=None, vocab_chars=None,
         # 0. get chars of words
         if vocab_chars is not None and chars == True:
             char_ids = []
-            entity_words = word.split("$@&")
-            for entity_word in entity_words:
-                for char in entity_word:
-                    # ignore chars out of vocabulary
-                    if char in vocab_chars:
-                        char_ids += [vocab_chars[char]]      #vocab_chars是个dict， list的+方法，就是往里添加元素[1]+[2]=[1,2]
+            for char in word:
+                # ignore chars out of vocabulary
+                if char in vocab_chars:
+                    char_ids += [vocab_chars[char]]      #vocab_chars是个dict， list的+方法，就是往里添加元素[1]+[2]=[1,2]
 
         # 1. preprocess word
         if lowercase:
